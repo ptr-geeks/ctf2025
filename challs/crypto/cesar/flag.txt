@@ -1,0 +1,1 @@
+ptr{shift_shift_and_shift_again}
