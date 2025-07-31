@@ -1,0 +1,1 @@
+ptr{w_in_wtable_stands_for_winner}
