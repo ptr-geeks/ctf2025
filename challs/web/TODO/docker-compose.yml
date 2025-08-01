@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  todo-app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLAG=PTR{pr0t0typ3_p0llut10n_j3_n3v4ren_7ud1_v_pyth0nu!}
+    restart: unless-stopped
+    container_name: todo-ctf-challenge
