@@ -25,7 +25,7 @@
         <div id="general" class="settings-section active">
             <div class="card">
                 <h3><i class="fas fa-user-cog"></i> General Settings</h3>
-                <form method="POST" action="{{ url_for('update_settings') }}">
+                <form method="POST" action="{{ url_for('settings.update_settings') }}">>
                     <input type="hidden" name="section" value="general">
                     <div class="form-group">
                         <label>Display Name:</label>
@@ -136,7 +136,7 @@
                     </div>
                 </div>
 
-                <form id="advanced-config-form" method="POST" action="{{ url_for('update_user_profile') }}" style="margin-top: 2rem;">
+                <form id="advanced-config-form" method="POST" action="{{ url_for('settings.update_user_profile') }}" style="margin-top: 2rem;">>
                     <input type="hidden" id="profile_data" name="profile_data" value="{}">
                     <button type="submit" class="btn">
                         <i class="fas fa-save"></i> Save Preferences

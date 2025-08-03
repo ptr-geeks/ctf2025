@@ -7,7 +7,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
-COPY app.py .
+COPY run.py .
+COPY app/ app/
 COPY templates/ templates/
 COPY static/ static/
 
@@ -17,9 +18,9 @@ RUN chown -R ctfuser:ctfuser /app
 USER ctfuser
 
 # Set environment variables
-ENV FLASK_APP=app.py
+ENV FLASK_APP=run.py
 ENV FLASK_ENV=production
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["python", "run.py"]
