@@ -5,3 +5,10 @@ all: build
 
 build:
 	$(CC) $(CCFLAGS) -o app main.c
+
+pack:
+
+docker:
+
+clean:
+	rm -f app

@@ -1,0 +1,254 @@
+challenges:
+  - name: "Login"
+    category: "Misc"
+    description: "Only 3 tries until you are blocked forever!"
+    value: "25"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{failed_to_login__invalid_session}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "300"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/misc/login
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.envkey=FLAG
+    files:
+      - "challs/misc/login/dist.zip"
+
+  - name: "Crackme"
+    category: "Rev"
+    description: "Get crackin' with a simple crackme"
+    value: "1"
+    state: "visible"
+    type: "standard"
+    flag: "ptr{if_you_can_read_this_you_are_cracked}"
+    instanced: {}
+    files:
+      - "challs/rev/crackme/app"
+  - name: "Crackme again"
+    category: "Rev"
+    description: "Ok, simple mistake on my part before. Let's try again!"
+    value: "10"
+    state: "visible"
+    type: "standard"
+    flag: "ptr{if_you_can_read_this_you_are_once_again_cracked}"
+    instanced: {}
+    files:
+      - "challs/rev/crackme_again/app"
+  - name: "Proto"
+    category: "Rev"
+    description: "The numbers Mason! What do they mean?"
+    value: "25"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{there_is_no_rev_like_a_maze_rev}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/rev/proto
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/rev/proto/dist.zip"
+  - name: "CS"
+    category: "Rev"
+    description: "I have the server, but where's the client?"
+    value: "50"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{master_of_barrier_dodging}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/rev/cs
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/rev/proto/dist.zip"
+
+  - name: "Cesar"
+    category: "Crypto"
+    description: "Where key?"
+    value: "1"
+    state: "visible"
+    type: "standard"
+    flag: "ptr{shift_shift_and_shift_again}"
+    instanced: {}
+    files:
+      - "challs/crypto/cesar/dist.zip"
+  - name: "RFC"
+    category: "Crypto"
+    description: "Does RFC stand for RFC or RFC?"
+    value: "10"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{ever_heard_of_the_rail_fence_cipher}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/crypto/rfc
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/crypto/rfc/dist.zip"
+  - name: "Not even once"
+    category: "Crypto"
+    description: "Encrypt, decrypt, repeat ..."
+    value: "25"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{i_thought_my_key_change_will_make_it_secure}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/crypto/not-even-once
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/crypto/not_even_once/dist.zip"
+  - name: "POc"
+    category: "Crypto"
+    description: "This time you can only encrypt"
+    value: "50"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{im_out_of_ideas_for_crypto_challenges_i_hope_you_had_fun}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/crypto/poc
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/crypto/POc/dist.zip"
+
+  - name: "Structural integrity"
+    category: "Pwn"
+    description: "Code so bad it barely stands together!"
+    value: "1"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{overoverwrite}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/pwn/structural-integrity
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/pwn/structural_integrity/dist.zip"
+  - name: "Return2Sender"
+    category: "Pwn"
+    description: "Is this how you database?"
+    value: "10"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{there_are_still_overflows_without_gets}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/pwn/return2sender
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/pwn/return2sender/dist.zip"
+  - name: "Got out"
+    category: "Pwn"
+    description: "... well not yet, but I'm trying to!"
+    value: "25"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{got_out_by_going_down_the_rabbit_hole}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/pwn/got-out
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/pwn/got_out/dist.zip"
+  - name: "WTable"
+    category: "Pwn"
+    description: "I want to play a game... No not saw, just pokemon!"
+    value: "50"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{w_in_wtable_stands_for_winner}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "socket"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "pwn"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/pwn/wtable
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+    files:
+      - "challs/pwn/wtable/dist.zip"
