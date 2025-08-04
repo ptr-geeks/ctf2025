@@ -252,3 +252,31 @@ challenges:
         flag.path=/app/flag.txt
     files:
       - "challs/pwn/wtable/dist.zip"
+
+  - name: "Pass"
+    category: "Web"
+    description: "Can you pass?"
+    value: "1"
+    state: "visible"
+    type: "instanced"
+    flag: "ptr{gandalf_would_be_proud}"
+    instanced:
+      flag_type: "7"
+      challenge_type: "web"
+      duration: "1800"
+      repository: "oci://registry:5000/charts"
+      chart: "web"
+      chart_version: "0.1.0"
+      values: |
+        image.repository=registry.vuln.si/challs/web/pass
+        image.tag=latest
+        image.pullPolicy=Always
+        imagePullSecrets[0].name=vuln
+        flag.path=/app/flag.txt
+        httproute.httpSectionName=http-web
+        httproute.httpsSectionName=https-web
+        volumes[0].name=apache
+        volumes[0].path=/var/run/apache2
+        volumes[0].size=1Mi
+        flag.envkey=FLAG
+    files: []
