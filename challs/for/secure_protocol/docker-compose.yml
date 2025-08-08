@@ -3,7 +3,7 @@ services:
   server:
     build: .
     ports:
-      - "12345:12345/udp"
+      - "12345:12345/tcp"
     environment:
       - FLAG=${FLAG}
     env_file:

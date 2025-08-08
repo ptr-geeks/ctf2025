@@ -1,4 +1,4 @@
-from scapy.all import rdpcap, UDP, Raw, IP
+from scapy.all import rdpcap, TCP, Raw, IP
 import struct
 
 def xor(data, key):
@@ -14,9 +14,9 @@ requests = {}
 
 # 1. Najdi ključ (odgovor na 0x02)
 for pkt in packets:
-    if UDP in pkt and Raw in pkt:
+    if TCP in pkt and Raw in pkt:
         data = pkt[Raw].load
-        if data.startswith(b"\x02") and len(data) == 5 and pkt[IP].src == "100.100.100.100":
+        if data.startswith(b"\x02") and len(data) == 5 and pkt[IP].src == "203.0.113.15" and pkt[TCP].sport == 12345:
             key = data[1:]
             print(f"[+] Key found: {key.hex()}")
             break
@@ -27,9 +27,9 @@ if key is None:
 
 # 2. Najdi seznam datotek (0x03)
 for pkt in packets:
-    if UDP in pkt and Raw in pkt:
+    if TCP in pkt and Raw in pkt:
         data = pkt[Raw].load
-        if data.startswith(b"\x03") and pkt[IP].src == "100.100.100.100":
+        if data.startswith(b"\x03") and pkt[IP].src == "203.0.113.15" and pkt[TCP].sport == 12345:
             payload = data[1:]
             while payload:
                 fid = payload[:4]
@@ -42,9 +42,9 @@ print(f"[+] Files: {[v for v in files.values()]}")
 
 # 3. Shrani vse zahteve za datoteke (0x01 request)
 for pkt in packets:
-    if UDP in pkt and Raw in pkt:
+    if TCP in pkt and Raw in pkt:
         data = pkt[Raw].load
-        if data.startswith(b"\x01") and pkt[IP].dst == "100.100.100.100":
+        if data.startswith(b"\x01") and pkt[TCP].dport == 12345:
             raw = data[1:]
             if len(raw) >= 12:
                 fid = raw[4:8]
@@ -53,9 +53,9 @@ for pkt in packets:
 
 # 4. Zberi odgovore (0x01 response) in dešifriraj
 for pkt in packets:
-    if UDP in pkt and Raw in pkt:
+    if TCP in pkt and Raw in pkt:
         data = pkt[Raw].load
-        if data.startswith(b"\x01") and pkt[IP].src == "100.100.100.100":
+        if data.startswith(b"\x01") and pkt[IP].src == "203.0.113.15" and pkt[TCP].sport == 12345:
             encrypted = data[1:]
             decrypted = xor(encrypted, key)
 
