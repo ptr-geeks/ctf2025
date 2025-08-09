@@ -53,9 +53,9 @@ def handle_client(conn, addr):
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-sock.bind(("0.0.0.0", 12345))
+sock.bind(("0.0.0.0", 1337))
 sock.listen(5)
-print("Server listening on port 12345...")
+print("Server listening on port 1337...")
 
 try:
     while True:

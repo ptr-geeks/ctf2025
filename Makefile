@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
 MAKE:=make
-CHALLS:=$(wildcard challs/misc/* challs/rev/* challs/crypto/* challs/pwn/* challs/web/pass)
+CHALLS:=$(wildcard challs/for/* challs/rev/* challs/crypto/* challs/pwn/* challs/web/pass)
 
 all: pack docker push
 
